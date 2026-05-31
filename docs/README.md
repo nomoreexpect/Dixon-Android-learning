@@ -2,6 +2,10 @@
 
 这里整理项目中的学习文档、设计说明和示意图。
 
+## Activity 生命周期
+
+- [Activity 生命周期学习笔记](activity-lifecycle-learning.md)
+
 ## 悬浮窗
 
 - [悬浮窗学习笔记](floating-window-learning.md)

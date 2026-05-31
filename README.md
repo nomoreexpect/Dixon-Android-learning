@@ -122,8 +122,30 @@ MotionEvent
 → WindowManager.updateViewLayout()
 ```
 
+## Activity 生命周期学习链路
+
+首页会把 `MainActivity` 的生命周期回调写入页面日志，并同步输出到 Logcat。通过跳转 `SecondActivity`、按返回键、退出页面，可以观察 Activity 在前台、可见、不可见、销毁之间的状态变化。
+
+核心链路：
+
+```text
+点击应用图标
+→ MainActivity.onCreate()
+→ setContentView() / initViews() / setupButtons()
+→ MainActivity.onStart()
+→ MainActivity.onResume()
+→ 注册前台需要的资源
+→ 跳转 SecondActivity
+→ MainActivity.onPause() / onStop()
+→ 返回 MainActivity
+→ onRestart() / onStart() / onResume()
+→ 退出页面
+→ onDestroy() 释放 Service 绑定和悬浮窗
+```
+
 ## 相关文档
 
+- [Activity 生命周期学习笔记](docs/activity-lifecycle-learning.md)
 - [悬浮窗学习笔记](docs/floating-window-learning.md)
 - [悬浮窗整体框架图](docs/floating-window-architecture.svg)
 - [文档索引](docs/README.md)
