@@ -33,6 +33,8 @@
 ├── docs/
 │   ├── floating-window-learning.md
 │   ├── floating-window-architecture.svg
+│   ├── android-learning-doc-prompt.md
+│   ├── templates/
 │   └── superpowers/
 ├── build.gradle
 ├── settings.gradle
@@ -148,6 +150,7 @@ MotionEvent
 - [Activity 生命周期学习笔记](docs/activity-lifecycle-learning.md)
 - [悬浮窗学习笔记](docs/floating-window-learning.md)
 - [悬浮窗整体框架图](docs/floating-window-architecture.svg)
+- [Android 学习能力扩展文档构建 Prompt](docs/android-learning-doc-prompt.md)
 - [文档索引](docs/README.md)
 
 ## 后续学习方向
