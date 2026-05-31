@@ -1,0 +1,6 @@
+// 项目根目录 build.gradle
+// AGP 8.5.2 + Gradle 8.9 —— 官方验证的兼容组合，支持 Java 21
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+    id 'com.android.library'     version '8.5.2' apply false
+}

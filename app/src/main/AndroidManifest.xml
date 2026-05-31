@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    AndroidManifest.xml - 应用清单文件
+    【知识点】Manifest 是 Android App 的"身份证"，记录：
+      - 应用包名、版本
+      - 所有组件（Activity / Service / BroadcastReceiver / ContentProvider）
+      - 所需权限（uses-permission）
+      - 最低/目标 SDK 版本
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ════════════════════════════════════════════════════
+         权限声明
+         【注意】Android 6.0+ 危险权限需要在运行时动态申请
+         ════════════════════════════════════════════════════ -->
+
+    <!-- 网络状态权限（普通权限，不需要运行时申请）-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 前台 Service 权限（Android 9.0+ 必须声明）-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Android 14+ 需要声明具体的前台 Service 类型 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
+    <!-- 通知权限（Android 13+ 必须动态申请，这里声明以便系统知晓）-->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- 系统悬浮窗权限：允许使用 TYPE_APPLICATION_OVERLAY 添加应用外悬浮窗。-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- ════════════════════════════════════════════════════
+             Activity 注册
+             ════════════════════════════════════════════════════ -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <!-- MAIN + LAUNCHER 让此 Activity 成为启动入口 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SecondActivity"
+            android:exported="false"
+            android:label="第二个页面"
+            android:parentActivityName=".MainActivity">
+            <!-- parentActivityName 让系统自动处理 ActionBar 的返回箭头 -->
+        </activity>
+
+        <!-- ════════════════════════════════════════════════════
+             Service 注册
+             【知识点】android:foregroundServiceType 声明服务类型（Android 10+）
+             ════════════════════════════════════════════════════ -->
+        <service
+            android:name=".MusicService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!-- ════════════════════════════════════════════════════
+             BroadcastReceiver 注册
+             【知识点】网络变化广播不能静态注册（Android 8.0+ 限制）
+             所以这里不注册 NetworkChangeReceiver，而是在代码中动态注册
+             ════════════════════════════════════════════════════ -->
+        <!-- NetworkChangeReceiver 通过代码动态注册，无需在此声明 -->
+
+        <!-- ════════════════════════════════════════════════════
+             ContentProvider 注册
+             【知识点】
+             - android:authorities 必须与代码中的 AUTHORITY 常量一致
+             - android:exported="false" 表示不对外暴露（只供本 App 使用）
+             - 如果要跨 App 共享，设为 true 并配合 android:readPermission
+             ════════════════════════════════════════════════════ -->
+        <provider
+            android:name=".LocalDataProvider"
+            android:authorities="com.example.lifecycledemo.provider"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#355070"/>
+    </marker>
+    <marker id="systemArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6D597A"/>
+    </marker>
+    <style>
+      .bg { fill: #f7f8fb; }
+      .title { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 34px; font-weight: 700; fill: #1f2937; }
+      .subtitle { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 17px; fill: #4b5563; }
+      .section-title { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 22px; font-weight: 700; fill: #111827; }
+      .label { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 18px; font-weight: 700; fill: #111827; }
+      .small { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 14px; fill: #374151; }
+      .tiny { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 13px; fill: #4b5563; }
+      .note { font-family: "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; font-size: 15px; fill: #4b5563; }
+      .app-band { fill: #eaf4ff; stroke: #9cc7f0; stroke-width: 2; }
+      .manager-band { fill: #edf7ee; stroke: #9ac79d; stroke-width: 2; }
+      .android-band { fill: #f7effb; stroke: #c6a8d8; stroke-width: 2; }
+      .box { fill: #ffffff; stroke: #9ca3af; stroke-width: 1.6; rx: 14; }
+      .blue { fill: #f0f7ff; stroke: #5b9bd5; }
+      .green { fill: #f2fbf4; stroke: #5fa463; }
+      .purple { fill: #faf5ff; stroke: #9a6fb0; }
+      .orange { fill: #fff7ed; stroke: #d97706; }
+      .red { fill: #fff1f2; stroke: #e11d48; }
+      .gray { fill: #f9fafb; stroke: #6b7280; }
+      .arrow { stroke: #355070; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .system-arrow { stroke: #6D597A; stroke-width: 2.5; fill: none; marker-end: url(#systemArrow); }
+      .dashed { stroke-dasharray: 8 7; }
+      .callout { fill: #fffdf5; stroke: #d8b449; stroke-width: 1.5; rx: 12; }
+      .divider { stroke: #cbd5e1; stroke-width: 1.2; stroke-dasharray: 4 6; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1200"/>
+
+  <text class="title" x="72" y="68">AndroidLifecycleDemo 悬浮窗功能整体框架</text>
+  <text class="subtitle" x="72" y="100">从按钮点击、权限检查、WindowManager 管理，到 ViewRootImpl / WMS / SurfaceFlinger 显示链路</text>
+
+  <rect class="app-band" x="48" y="135" width="460" height="850" rx="22"/>
+  <rect class="manager-band" x="550" y="135" width="500" height="850" rx="22"/>
+  <rect class="android-band" x="1092" y="135" width="460" height="850" rx="22"/>
+
+  <text class="section-title" x="78" y="178">App 层：Activity 与权限入口</text>
+  <text class="section-title" x="580" y="178">悬浮窗管理层：View / 拖动 / 收球</text>
+  <text class="section-title" x="1122" y="178">Android 窗口系统链路</text>
+
+  <!-- App layer -->
+  <rect class="box blue" x="84" y="215" width="360" height="94"/>
+  <text class="label" x="112" y="250">MainActivity</text>
+  <text class="small" x="112" y="276">页面按钮：开启 / 关闭悬浮窗</text>
+  <text class="small" x="112" y="296">Demo 中 Activity 拥有悬浮窗生命周期</text>
+
+  <rect class="box orange" x="84" y="352" width="360" height="110"/>
+  <text class="label" x="112" y="387">权限检查与授权跳转</text>
+  <text class="small" x="112" y="414">Manifest: SYSTEM_ALERT_WINDOW</text>
+  <text class="small" x="112" y="436">Settings.canDrawOverlays()</text>
+
+  <rect class="box blue" x="84" y="505" width="360" height="116"/>
+  <text class="label" x="112" y="540">OverlayPermissionIntentSpec</text>
+  <text class="small" x="112" y="567">优先打开应用详情页</text>
+  <text class="small" x="112" y="589">再 fallback 到通用悬浮窗设置页</text>
+
+  <rect class="box red" x="84" y="675" width="360" height="126"/>
+  <text class="label" x="112" y="710">MainActivity.onDestroy()</text>
+  <text class="small" x="112" y="737">当前 Demo：页面销毁时 removeView()</text>
+  <text class="small" x="112" y="759">真实业务若要常驻，应迁到 Service</text>
+  <text class="tiny" x="112" y="782">避免 Activity 泄漏或窗口残留</text>
+
+  <!-- Manager layer -->
+  <rect class="box green" x="606" y="215" width="388" height="112"/>
+  <text class="label" x="634" y="250">FloatWindowManager</text>
+  <text class="small" x="634" y="277">负责 show / updatePosition / remove</text>
+  <text class="small" x="634" y="299">只 addView 一次，内部切换卡片与圆球</text>
+
+  <rect class="box green" x="606" y="366" width="388" height="126"/>
+  <text class="label" x="634" y="401">悬浮窗 Root View</text>
+  <text class="small" x="634" y="428">FrameLayout root 作为 WindowManager View</text>
+  <text class="small" x="634" y="450">Expanded: 卡片 + 关闭按钮</text>
+  <text class="small" x="634" y="472">Collapsed: 56dp 圆球，点击展开</text>
+
+  <rect class="box green" x="606" y="535" width="388" height="132"/>
+  <text class="label" x="634" y="570">拖动与收球规则</text>
+  <text class="small" x="634" y="597">FloatWindowPositionTracker: 计算拖动位置</text>
+  <text class="small" x="634" y="619">FloatWindowDragGestureTracker: 区分点击/拖动</text>
+  <text class="small" x="634" y="641">FloatWindowEdgeController: clamp + 吸边</text>
+
+  <rect class="box orange" x="606" y="710" width="388" height="160"/>
+  <text class="label" x="634" y="745">WindowManager.LayoutParams</text>
+  <text class="small" x="634" y="772">type = TYPE_APPLICATION_OVERLAY</text>
+  <text class="small" x="634" y="794">flags = NOT_FOCUSABLE | LAYOUT_IN_SCREEN</text>
+  <text class="small" x="634" y="816">format = TRANSLUCENT</text>
+  <text class="small" x="634" y="838">gravity = START | TOP, x / y 控制位置</text>
+
+  <rect class="box purple" x="606" y="908" width="388" height="52"/>
+  <text class="label" x="634" y="941">addView / updateViewLayout / removeView</text>
+
+  <!-- Android layer -->
+  <rect class="box purple" x="1130" y="215" width="360" height="92"/>
+  <text class="label" x="1158" y="250">WindowManagerImpl</text>
+  <text class="small" x="1158" y="276">App 侧窗口入口 API</text>
+  <text class="tiny" x="1158" y="294">add / update / remove 委托给 WindowManagerGlobal</text>
+
+  <rect class="box purple" x="1130" y="352" width="360" height="104"/>
+  <text class="label" x="1158" y="387">ViewRootImpl</text>
+  <text class="small" x="1158" y="414">接管 View 树、测量、布局、绘制</text>
+  <text class="small" x="1158" y="436">处理输入事件与渲染请求</text>
+
+  <rect class="box purple" x="1130" y="501" width="360" height="82"/>
+  <text class="label" x="1158" y="536">Binder IPC</text>
+  <text class="small" x="1158" y="562">跨进程通知 system_server</text>
+
+  <rect class="box purple" x="1130" y="628" width="360" height="126"/>
+  <text class="label" x="1158" y="663">WindowManagerService</text>
+  <text class="small" x="1158" y="690">校验权限与 appop</text>
+  <text class="small" x="1158" y="712">管理窗口层级、焦点、输入区域</text>
+  <text class="small" x="1158" y="734">为窗口准备 Surface / SurfaceControl</text>
+
+  <rect class="box purple" x="1130" y="800" width="360" height="82"/>
+  <text class="label" x="1158" y="835">Surface / BufferQueue</text>
+  <text class="small" x="1158" y="861">承载窗口绘制结果</text>
+
+  <rect class="box purple" x="1130" y="927" width="360" height="82"/>
+  <text class="label" x="1158" y="962">SurfaceFlinger</text>
+  <text class="small" x="1158" y="988">合成各层 Surface，最终显示到屏幕</text>
+
+  <!-- Internal arrows -->
+  <path class="arrow" d="M264 309 L264 352"/>
+  <path class="arrow" d="M264 462 L264 505"/>
+  <path class="arrow" d="M444 563 C500 563 526 271 606 271"/>
+  <path class="arrow" d="M800 327 L800 366"/>
+  <path class="arrow" d="M800 492 L800 535"/>
+  <path class="arrow" d="M800 667 L800 710"/>
+  <path class="arrow" d="M800 870 L800 908"/>
+  <path class="system-arrow" d="M994 934 C1060 934 1065 261 1130 261"/>
+  <path class="system-arrow" d="M1310 307 L1310 352"/>
+  <path class="system-arrow" d="M1310 456 L1310 501"/>
+  <path class="system-arrow" d="M1310 583 L1310 628"/>
+  <path class="system-arrow" d="M1310 754 L1310 800"/>
+  <path class="system-arrow" d="M1310 882 L1310 927"/>
+
+  <!-- Feedback/update arrows -->
+  <path class="arrow dashed" d="M994 615 C1068 615 1072 670 1130 670"/>
+  <text class="tiny" x="1012" y="608">拖动时 updateViewLayout</text>
+  <path class="arrow dashed" d="M994 448 C1055 448 1068 408 1130 408"/>
+  <text class="tiny" x="1002" y="438">View 内容切换：卡片 / 圆球</text>
+
+  <!-- Callouts -->
+  <rect class="callout" x="84" y="840" width="360" height="98"/>
+  <text class="label" x="112" y="875">当前 Demo 的生命周期结论</text>
+  <text class="note" x="112" y="902">退出 MainActivity 后悬浮窗会被 remove。</text>
+  <text class="note" x="112" y="924">若要退出页面仍存在，应由 Service 持有管理器。</text>
+
+  <rect class="callout" x="606" y="990" width="388" height="114"/>
+  <text class="label" x="634" y="1025">本次收球修复重点</text>
+  <text class="note" x="634" y="1052">点击卡片：不触发 settle，不收球。</text>
+  <text class="note" x="634" y="1074">真实拖动：先 clamp，释放靠边才收成圆球。</text>
+  <text class="note" x="634" y="1096">圆球点击：展开回卡片。</text>
+
+  <rect class="callout" x="1130" y="1040" width="360" height="64"/>
+  <text class="label" x="1158" y="1075">验证方式</text>
+  <text class="note" x="1158" y="1098">Logcat 看 FloatWindow，dumpsys window 看 type=APPLICATION_OVERLAY。</text>
+
+  <!-- Footer chain -->
+  <line class="divider" x1="72" y1="1140" x2="1528" y2="1140"/>
+  <text class="subtitle" x="72" y="1172">核心链路：Activity → FloatWindowManager → View + LayoutParams → WindowManager.addView/update/remove → ViewRootImpl → Binder → WMS → Surface → SurfaceFlinger</text>
+</svg>

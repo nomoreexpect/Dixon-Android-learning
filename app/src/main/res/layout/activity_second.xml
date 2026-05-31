@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F5F5F5"
+    android:gravity="center">
+
+    <!-- 页面标题 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🎯 SecondActivity"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#311B92"
+        android:gravity="center"
+        android:paddingBottom="24dp" />
+
+    <!-- 生命周期说明 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="【当前状态】\n你正在 SecondActivity 的 onResume 状态\nMainActivity 此时处于 onStop 状态（完全不可见）\n\n按返回后，生命周期顺序：\nSecond.onPause → Main.onRestart → Main.onStart\n→ Main.onResume → Second.onStop → Second.onDestroy"
+        android:textSize="13sp"
+        android:textColor="#555555"
+        android:background="#EDE7F6"
+        android:padding="14dp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- 接收到的数据 -->
+    <TextView
+        android:id="@+id/tv_received_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="（等待接收数据）"
+        android:textSize="15sp"
+        android:textColor="#4527A0"
+        android:background="#FFFFFF"
+        android:padding="14dp"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 直接返回 -->
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="← 返回 MainActivity（finish）"
+        android:backgroundTint="#7C4DFF"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 携带结果返回 -->
+    <Button
+        android:id="@+id/btn_back_with_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="← 携带结果返回（setResult + finish）"
+        android:backgroundTint="#651FFF" />
+
+</LinearLayout>

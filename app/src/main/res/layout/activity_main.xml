@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 标题 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp" />
+
+        <!-- ═══════════════════════════════════════════
+             生命周期日志面板
+             ═══════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="生命周期日志"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#455A64"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tv_lifecycle_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="112dp"
+            android:text="等待生命周期事件..."
+            android:textSize="13sp"
+            android:textColor="#263238"
+            android:fontFamily="monospace"
+            android:background="#ECEFF1"
+            android:padding="10dp"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_clear_lifecycle_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="清空生命周期日志"
+            android:backgroundTint="#455A64"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ═══════════════════════════════════════════
+             区块 1: Intent 示例
+             ═══════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="① Intent 示例"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#3F51B5"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显式 Intent 指定目标组件；隐式 Intent 只描述动作和数据，由系统寻找可处理的 App。"
+            android:textSize="13sp"
+            android:textColor="#555555"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_go_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显式跳转到 SecondActivity"
+            android:backgroundTint="#3F51B5"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_open_website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="隐式打开网页"
+            android:backgroundTint="#3F51B5"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_open_dialer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="隐式打开拨号盘"
+            android:backgroundTint="#3F51B5"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_share_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="分享文本"
+            android:backgroundTint="#3F51B5"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ═══════════════════════════════════════════
+             区块 2: 前台 Service
+             ═══════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="② 前台 Service（音乐播放）"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#E91E63"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tv_service_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⏹ 音乐已停止"
+            android:textSize="14sp"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btn_play_pause"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="播放音乐"
+                android:backgroundTint="#E91E63"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_bind_service"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="绑定 Service"
+                android:backgroundTint="#C2185B" />
+        </LinearLayout>
+
+        <!-- ═══════════════════════════════════════════
+             区块 3: WindowManager 悬浮窗
+             ═══════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="③ WindowManager（悬浮窗）"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#607D8B"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tv_float_window_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="悬浮窗未显示"
+            android:textSize="14sp"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_float_window"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开启悬浮窗"
+            android:backgroundTint="#607D8B"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ═══════════════════════════════════════════
+             区块 4: 网络广播（显示状态，监听在代码里动态注册）
+             ═══════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="④ BroadcastReceiver（网络监听）"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#009688"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tv_network_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📡 网络状态检测中..."
+            android:textSize="14sp"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- ═══════════════════════════════════════════
+             区块 5: ContentProvider
+             ═══════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⑤ ContentProvider（本地数据）"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#FF9800"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_query_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查询本地数据（ContentProvider）"
+            android:backgroundTint="#FF9800"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 提示 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="💡 提示：打开 Android Studio Logcat，过滤 'Lifecycle' 标签，可以清晰看到所有生命周期回调"
+            android:textSize="12sp"
+            android:textColor="#777777"
+            android:background="#FFFDE7"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+
+</ScrollView>
