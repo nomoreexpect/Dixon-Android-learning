@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View 学习 Demo"
+            android:textColor="#1B5E20"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="点击或拖动下面的自定义 View，观察 dispatchTouchEvent / onTouchEvent；点击按钮触发 invalidate 或 requestLayout，观察 measure / draw 变化。"
+            android:textColor="#37474F"
+            android:textSize="13sp"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp" />
+
+        <com.example.lifecycledemo.DebugLearningView
+            android:id="@+id/debug_learning_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试开发视角"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="#2E7D32"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/tv_view_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="等待 View 状态..."
+            android:textColor="#263238"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:background="#E8F5E9"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <Button
+                android:id="@+id/btn_view_invalidate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="invalidate"
+                android:backgroundTint="#43A047"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_view_request_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="requestLayout"
+                android:backgroundTint="#2E7D32" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btn_view_toggle_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="切换尺寸"
+                android:backgroundTint="#388E3C"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_view_clear_log"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="清空日志"
+                android:backgroundTint="#546E7A" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View 回调日志"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="#455A64"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/tv_view_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="220dp"
+            android:text="等待 View 回调..."
+            android:textColor="#263238"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:background="#ECEFF1"
+            android:padding="10dp"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>
+

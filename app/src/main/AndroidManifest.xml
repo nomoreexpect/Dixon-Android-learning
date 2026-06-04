@@ -60,6 +60,12 @@
             <!-- parentActivityName 让系统自动处理 ActionBar 的返回箭头 -->
         </activity>
 
+        <activity
+            android:name=".ViewDemoActivity"
+            android:exported="false"
+            android:label="View 学习 Demo"
+            android:parentActivityName=".MainActivity" />
+
         <!-- ════════════════════════════════════════════════════
              Service 注册
              【知识点】android:foregroundServiceType 声明服务类型（Android 10+）

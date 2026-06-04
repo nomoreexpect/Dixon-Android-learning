@@ -292,6 +292,16 @@ public class MainActivity extends AppCompatActivity {
         // ── 查询 ContentProvider 数据 ──
         Button btnQueryData = findViewById(R.id.btn_query_data);
         btnQueryData.setOnClickListener(v -> queryLocalData());
+
+        // ── View 学习 Demo ──
+        Button btnOpenViewDemo = findViewById(R.id.btn_open_view_demo);
+        btnOpenViewDemo.setOnClickListener(v -> {
+            // 【知识点】进入独立页面观察自定义 View 的 measure/layout/draw/touch 回调。
+            startActivitySafely(
+                    new Intent(this, ViewDemoActivity.class),
+                    "无法打开 View 学习 Demo"
+            );
+        });
     }
 
     private void appendLifecycleLog(String eventName) {

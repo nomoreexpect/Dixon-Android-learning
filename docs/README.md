@@ -14,6 +14,13 @@
 - [悬浮窗实现计划](superpowers/plans/2026-05-29-float-window.md)
 - [收球功能实现计划](superpowers/plans/2026-05-31-float-window-collapse.md)
 
+## View 学习
+
+- [自定义 View 学习笔记](custom-view-learning.md)
+- [自定义 View 整体框架图](custom-view-architecture.svg)
+- [自定义 View 设计说明](superpowers/specs/2026-06-04-custom-view-design.md)
+- [自定义 View 实现计划](superpowers/plans/2026-06-04-custom-view.md)
+
 ## 项目说明
 
 - [根 README](../README.md)

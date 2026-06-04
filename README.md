@@ -12,7 +12,8 @@
 - **BroadcastReceiver**：动态监听网络变化。
 - **ContentProvider**：暴露本地数据查询入口。
 - **WindowManager 悬浮窗**：申请悬浮窗权限，创建 overlay，支持拖动、关闭、收球、贴边吸附动画。
-- **本地单元测试**：覆盖生命周期日志、Intent 构造、悬浮窗拖动、吸边与权限跳转规则。
+- **自定义 View 学习**：观察 `setContentView`、View 树、`measure/layout/draw`、触摸事件和测试定位信息。
+- **本地单元测试**：覆盖生命周期日志、Intent 构造、悬浮窗拖动、吸边、权限跳转与 View Demo 纯逻辑。
 
 ## 项目结构
 
@@ -27,12 +28,18 @@
 │   │   ├── LocalDataProvider.java
 │   │   ├── FloatWindowManager.java
 │   │   ├── FloatWindowEdgeController.java
-│   │   └── FloatWindowDragGestureTracker.java
+│   │   ├── FloatWindowDragGestureTracker.java
+│   │   ├── ViewDemoActivity.java
+│   │   ├── DebugLearningView.java
+│   │   ├── ViewDemoLogBuffer.java
+│   │   └── DebugViewState.java
 │   ├── src/main/res/
 │   └── src/test/java/com/example/lifecycledemo/
 ├── docs/
 │   ├── floating-window-learning.md
 │   ├── floating-window-architecture.svg
+│   ├── custom-view-learning.md
+│   ├── custom-view-architecture.svg
 │   ├── android-learning-doc-prompt.md
 │   ├── templates/
 │   └── superpowers/
@@ -145,11 +152,41 @@ MotionEvent
 → onDestroy() 释放 Service 绑定和悬浮窗
 ```
 
+## View 学习链路
+
+首页第 ⑥ 个模块可以进入 `ViewDemoActivity`，通过一个自定义 `DebugLearningView` 观察 View 的创建、测量、绘制、触摸和测试定位信息。
+
+核心链路：
+
+```text
+MainActivity
+→ ViewDemoActivity.onCreate()
+→ setContentView()
+→ LayoutInflater 创建 View 树
+→ DebugLearningView 构造
+→ ViewRootImpl 执行遍历
+→ onMeasure() / layout / onDraw()
+→ dispatchTouchEvent() / onTouchEvent()
+→ invalidate() 或 requestLayout() 触发刷新
+```
+
+测试开发视角：
+
+```text
+resource-id / contentDescription
+→ visibility / enabled / clickable / bounds
+→ 点击或拖动
+→ MotionEvent 分发
+→ 页面日志和状态文本验证结果
+```
+
 ## 相关文档
 
 - [Activity 生命周期学习笔记](docs/activity-lifecycle-learning.md)
 - [悬浮窗学习笔记](docs/floating-window-learning.md)
 - [悬浮窗整体框架图](docs/floating-window-architecture.svg)
+- [自定义 View 学习笔记](docs/custom-view-learning.md)
+- [自定义 View 整体框架图](docs/custom-view-architecture.svg)
 - [Android 学习能力扩展文档构建 Prompt](docs/android-learning-doc-prompt.md)
 - [文档索引](docs/README.md)
 
@@ -164,4 +201,4 @@ MotionEvent
 - WorkManager 后台任务
 - Notification 操作按钮
 - Dialog / PopupWindow / BottomSheet / 悬浮窗对比
-- 自定义 View 与触摸事件分发
+- 自定义 ViewGroup、嵌套滑动与 RecyclerView 测试

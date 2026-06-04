@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="720" viewBox="0 0 1120 720">
+  <defs>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #17324d; }
+      .section { font: 700 18px Arial, sans-serif; fill: #ffffff; }
+      .boxText { font: 15px Arial, sans-serif; fill: #1f2933; }
+      .small { font: 13px Arial, sans-serif; fill: #52606d; }
+      .flow { stroke: #2f80ed; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+      .testFlow { stroke: #2e7d32; stroke-width: 2.4; fill: none; marker-end: url(#greenArrow); }
+      .box { fill: #ffffff; stroke: #b8c2cc; stroke-width: 1.5; rx: 8; }
+      .blueBand { fill: #2f80ed; rx: 8; }
+      .greenBand { fill: #2e7d32; rx: 8; }
+      .note { fill: #f5f7fa; stroke: #d9e2ec; stroke-width: 1.2; rx: 8; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2f80ed"/>
+    </marker>
+    <marker id="greenArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2e7d32"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="720" fill="#f7fafc"/>
+  <text x="40" y="54" class="title">Android View 学习模块整体链路</text>
+  <text x="42" y="84" class="small">ViewDemoActivity + DebugLearningView 同时观察 Framework 遍历和测试开发定位/点击行为</text>
+
+  <rect x="40" y="118" width="500" height="44" class="blueBand"/>
+  <text x="60" y="146" class="section">Framework 原理线</text>
+
+  <rect x="40" y="188" width="190" height="64" class="box"/>
+  <text x="64" y="214" class="boxText">MainActivity</text>
+  <text x="64" y="236" class="small">点击 View 学习 Demo</text>
+
+  <rect x="295" y="188" width="190" height="64" class="box"/>
+  <text x="319" y="214" class="boxText">ViewDemoActivity</text>
+  <text x="319" y="236" class="small">setContentView()</text>
+
+  <rect x="550" y="188" width="210" height="64" class="box"/>
+  <text x="574" y="214" class="boxText">LayoutInflater</text>
+  <text x="574" y="236" class="small">XML 创建 View 树</text>
+
+  <rect x="820" y="188" width="220" height="64" class="box"/>
+  <text x="844" y="214" class="boxText">DebugLearningView</text>
+  <text x="844" y="236" class="small">自定义 View 节点</text>
+
+  <path d="M230 220 H295" class="flow"/>
+  <path d="M485 220 H550" class="flow"/>
+  <path d="M760 220 H820" class="flow"/>
+
+  <rect x="140" y="310" width="190" height="74" class="box"/>
+  <text x="164" y="338" class="boxText">DecorView / Window</text>
+  <text x="164" y="360" class="small">Activity 内容根节点</text>
+
+  <rect x="410" y="310" width="190" height="74" class="box"/>
+  <text x="434" y="338" class="boxText">ViewRootImpl</text>
+  <text x="434" y="360" class="small">performTraversals()</text>
+
+  <rect x="680" y="310" width="280" height="74" class="box"/>
+  <text x="704" y="338" class="boxText">measure → layout → draw</text>
+  <text x="704" y="360" class="small">onMeasure / onSizeChanged / onDraw</text>
+
+  <path d="M930 252 C930 286 330 276 330 310" class="flow"/>
+  <path d="M330 347 H410" class="flow"/>
+  <path d="M600 347 H680" class="flow"/>
+
+  <rect x="40" y="430" width="500" height="44" class="greenBand"/>
+  <text x="60" y="458" class="section">测试开发线</text>
+
+  <rect x="40" y="500" width="200" height="72" class="box"/>
+  <text x="64" y="528" class="boxText">查找 View</text>
+  <text x="64" y="550" class="small">id / text / contentDescription</text>
+
+  <rect x="315" y="500" width="210" height="72" class="box"/>
+  <text x="339" y="528" class="boxText">检查可操作状态</text>
+  <text x="339" y="550" class="small">visible / enabled / bounds</text>
+
+  <rect x="600" y="500" width="210" height="72" class="box"/>
+  <text x="624" y="528" class="boxText">注入点击或触摸</text>
+  <text x="624" y="550" class="small">坐标、滚动、遮挡</text>
+
+  <rect x="875" y="500" width="200" height="72" class="box"/>
+  <text x="899" y="528" class="boxText">验证结果</text>
+  <text x="899" y="550" class="small">日志、状态、截图</text>
+
+  <path d="M240 536 H315" class="testFlow"/>
+  <path d="M525 536 H600" class="testFlow"/>
+  <path d="M810 536 H875" class="testFlow"/>
+
+  <rect x="120" y="620" width="880" height="58" class="note"/>
+  <text x="150" y="646" class="boxText">学习重点：测试脚本最终面对的是窗口里的 View 节点；点击失败往往不是“脚本错了”，而是 View 树、bounds、可见性、事件消费或刷新时机出了问题。</text>
+  <text x="150" y="668" class="small">本 Demo 用页面日志把 onMeasure / onDraw / dispatchTouchEvent / onTouchEvent 和测试视角状态放在同一屏观察。</text>
+</svg>
+

@@ -239,6 +239,38 @@
             android:backgroundTint="#FF9800"
             android:layout_marginBottom="16dp" />
 
+        <!-- ═══════════════════════════════════════════
+             区块 6: View 学习
+             ═══════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⑥ View 学习（自定义 View）"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#2E7D32"
+            android:padding="10dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="观察 View 创建、测量、绘制、触摸事件，以及测试开发中常用的 id、contentDescription、可见性和坐标信息。"
+            android:textSize="13sp"
+            android:textColor="#555555"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="4dp" />
+
+        <Button
+            android:id="@+id/btn_open_view_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开 View 学习 Demo"
+            android:backgroundTint="#2E7D32"
+            android:layout_marginBottom="16dp" />
+
         <!-- 提示 -->
         <TextView
             android:layout_width="match_parent"
